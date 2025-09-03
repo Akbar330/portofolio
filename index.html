@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bang Jhon - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo .neon-text {
+            color: #fbbf24;
+            text-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24, 0 0 30px #fbbf24;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fbbf24;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fbbf24;
+            box-shadow: 0 0 8px #fbbf24;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.1) 0%, rgba(15, 15, 15, 0.8) 50%);
+        }
+
+        .floating-dots {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24;
+            animation: pulse 2s infinite;
+        }
+
+        .dot:nth-child(1) { top: 80px; left: 80px; animation-delay: 0s; }
+        .dot:nth-child(2) { top: 160px; right: 128px; width: 4px; height: 4px; animation-delay: 0.1s; }
+        .dot:nth-child(3) { bottom: 128px; left: 128px; width: 6px; height: 6px; animation-delay: 0.2s; }
+        .dot:nth-child(4) { bottom: 80px; right: 80px; animation-delay: 0.3s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 128px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-title .neon-text-large {
+            color: #fbbf24;
+            text-shadow: 0 0 20px #fbbf24, 0 0 30px #fbbf24, 0 0 40px #fbbf24;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 32px);
+            color: #d1d5db;
+            margin-bottom: 32px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .social-link {
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 8px #fbbf24);
+        }
+
+        .scroll-indicator {
+            color: #fbbf24;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-alt {
+            background: rgba(31, 41, 55, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title .neon-text {
+            color: #fbbf24;
+            text-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24, 0 0 30px #fbbf24;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .cta-button {
+            background: #fbbf24;
+            color: #0f0f0f;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #f59e0b;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.05));
+            border-radius: 16px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .skill-item {
+            margin-bottom: 24px;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .skill-icon {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 4px #fbbf24);
+        }
+
+        .skill-name {
+            font-size: 18px;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+
+        .skill-percent {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 12px;
+            background: #374151;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+            transition: width 2s ease-out;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 24px;
+        }
+
+        .tech-item {
+            padding: 16px;
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 12px;
+            border: 1px solid #374151;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tech-item:hover {
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 16px;
+            border: 1px solid #374151;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 192px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .project-content {
+            padding: 24px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: #fbbf24;
+        }
+
+        .project-description {
+            color: #d1d5db;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tech-tag {
+            padding: 4px 12px;
+            background: rgba(55, 65, 81, 0.5);
+            color: #fbbf24;
+            font-size: 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #fbbf24;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            text-shadow: 0 0 8px #fbbf24;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            font-size: 20px;
+            color: #d1d5db;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #fbbf24;
+            text-shadow: 0 0 10px #fbbf24;
+        }
+
+        .large-cta-button {
+            background: #fbbf24;
+            color: #0f0f0f;
+            padding: 16px 48px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .large-cta-button:hover {
+            background: #f59e0b;
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 32px 20px;
+            border-top: 1px solid #374151;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 4px #fbbf24);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="neon-text">Bang</span><span>Jhon</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="floating-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="neon-text-large">Hello</span><br>
+                <span>I'm Bang <span class="neon-text-large">Jhon</span></span>
+            </h1>
+            <p class="hero-subtitle">
+               Junior Full-Stack Developer crafting digital experiences with modern technologies
+            </p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i data-feather="github" width="32" height="32"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i data-feather="linkedin" width="32" height="32"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i data-feather="mail" width="32" height="32"></i>
+                </a>
+            </div>
+            <div class="scroll-indicator" onclick="scrollToSection('about')">
+                <i data-feather="chevron-down" width="40" height="40"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">About</span> Me
+            </h2>
+            <div class="about-grid">
+                <div>
+                    <p class="about-text">
+                       Masih pemula puh sepuh
+                    </p>
+                    <p class="about-text">
+                        Infokan Client
+                    </p>
+                    <a href="#" class="cta-button">Download CV</a>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">👨‍💻</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section section-alt" id="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">Skills</span> & Expertise
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <i data-feather="code" class="skill-icon"></i>
+                        <span class="skill-name">Frontend Development</span>
+                        <span class="skill-percent">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="70"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <i data-feather="server" class="skill-icon"></i>
+                        <span class="skill-name">Backend Development</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="90"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">React</div>
+                <div class="tech-item">Node.js</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">TypeScript</div>
+                <div class="tech-item">MongoDB</div>
+                <div class="tech-item">AWS</div>
+                <div class="tech-item">Docker</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">
+                Featured <span class="neon-text">Projects</span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">💻</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Dashboard</h3>
+                        <p class="project-description">
+                            Modern analytics dashboard with real-time data visualization and machine learning insights.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            <span>View Project</span>
+                            <i data-feather="external-link" width="16" height="16"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">
+                            Full-stack e-commerce solution with advanced search and recommendation engine.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            <span>View Project</span>
+                            <i data-feather="external-link" width="16" height="16"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mobile Fitness App</h3>
+                        <p class="project-description">
+                            Cross-platform fitness tracking app with social features and workout plans.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            <span>View Project</span>
+                            <i data-feather="external-link" width="16" height="16"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">
+                    Let's <span class="neon-text">Connect</span>
+                </h2>
+                <p class="contact-subtitle">
+                    Ready to bring your ideas to life? Let's discuss how we can work together to create something amazing.
+                </p>
+                <div class="contact-info">
+                    <a href="mailto:babangakbar350@gmail.com" class="contact-item">
+                        <i data-feather="mail"></i>
+                        <span>babangakbar350@gmail.com</span>
+                    </a>
+                </div>
+                <a href="#" class="large-cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2025 BangsaTech Dev. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/Akbar330" class="footer-link">
+                    <i data-feather="github" width="20" height="20"></i>
+                </a>
+                <a href="https://linkedin.com/in/muhammad-akbar-alhariri-693070323/" class="footer-link">
+                    <i data-feather="linkedin" width="20" height="20"></i>
+                </a>
+                <a href="https://instagram.com/akbr_muhammd" class="footer-link">
+                    <i data-feather="instagram" width="20" height="20"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // GitHub Configuration
+        const GITHUB_USERNAME = 'Akbar330'; // ⚠️ GANTI INI DENGAN USERNAME GITHUB KAMU
+        const FEATURED_REPOS = [
+            'BNN_QUIZ',
+            'SPRIN_GENERATOR'
+        ]; // ⚠️ GANTI INI DENGAN NAMA REPOSITORY YANG MAU DITAMPILKAN
+
+        // Function to get programming language icon/emoji
+        function getLanguageIcon(language) {
+            const icons = {
+                'JavaScript': '🟨',
+                'TypeScript': '🔷', 
+                'Python': '🐍',
+                'Java': '☕',
+                'HTML': '🌐',
+                'CSS': '🎨',
+                'PHP': '🐘',
+                'C++': '⚡',
+                'C#': '💜',
+                'Go': '🐹',
+                'Rust': '🦀',
+                'Swift': '🍎',
+                'Kotlin': '📱',
+                'React': '⚛️',
+                'Vue': '💚',
+                'Angular': '🅰️'
+            };
+            return icons[language] || '📁';
+        }
+
+        // Function to fetch GitHub repositories
+        async function fetchGitHubRepos() {
+            const projectsGrid = document.querySelector('.projects-grid');
+            
+            // Show loading state
+            projectsGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; color: #fbbf24; font-size: 18px;">
+                    <i data-feather="loader" style="animation: spin 1s linear infinite;"></i>
+                    Loading projects from GitHub...
+                </div>
+            `;
+            feather.replace();
+
+            try {
+                console.log('Fetching repos for username:', GITHUB_USERNAME);
+                
+                // Fetch user repositories
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+                
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API Error: ${response.status}`);
+                }
+
+                const allRepos = await response.json();
+                console.log('Total repos found:', allRepos.length);
+                console.log('All repos:', allRepos.map(repo => repo.name));
+                console.log('Looking for featured repos:', FEATURED_REPOS);
+                
+                // Filter featured repositories or get latest ones
+                let repos;
+                if (FEATURED_REPOS.length > 0) {
+                    repos = FEATURED_REPOS.map(repoName => {
+                        const foundRepo = allRepos.find(repo => repo.name.toLowerCase() === repoName.toLowerCase());
+                        console.log(`Looking for ${repoName}:`, foundRepo ? 'FOUND' : 'NOT FOUND');
+                        return foundRepo;
+                    }).filter(Boolean); // Remove undefined repos
+                    
+                    console.log('Featured repos found:', repos.length);
+                    
+                    // If some featured repos don't exist, fill with latest repos
+                    if (repos.length < 3) {
+                        const additionalRepos = allRepos
+                            .filter(repo => !repo.fork && !FEATURED_REPOS.includes(repo.name))
+                            .slice(0, 3 - repos.length);
+                        repos = [...repos, ...additionalRepos];
+                        console.log('Added additional repos, total now:', repos.length);
+                    }
+                } else {
+                    // Get latest 3 non-fork repositories
+                    repos = allRepos.filter(repo => !repo.fork).slice(0, 3);
+                    console.log('Using latest 3 non-fork repos');
+                }
+
+                console.log('Final repos to display:', repos.map(repo => repo.name));
+
+                // Clear loading state
+                projectsGrid.innerHTML = '';
+
+                if (repos.length === 0) {
+                    projectsGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; color: #fbbf24;">
+                            <i data-feather="info"></i>
+                            <p>No repositories found</p>
+                            <p style="font-size: 14px; color: #9ca3af;">Make sure repositories exist and are public</p>
+                        </div>
+                    `;
+                } else {
+                    // Create project cards
+                    repos.forEach(repo => {
+                        const projectCard = createProjectCard(repo);
+                        projectsGrid.appendChild(projectCard);
+                    });
+                }
+
+                feather.replace();
+
+            } catch (error) {
+                console.error('Error fetching GitHub repos:', error);
+                projectsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; color: #ef4444;">
+                        <i data-feather="alert-circle"></i>
+                        <p>Failed to load projects from GitHub</p>
+                        <p style="font-size: 14px; color: #9ca3af;">Error: ${error.message}</p>
+                        <p style="font-size: 14px; color: #9ca3af;">Check username: "${GITHUB_USERNAME}" and internet connection</p>
+                    </div>
+                `;
+                feather.replace();
+            }
+        }
+
+        // Function to create project card from GitHub repo data
+        function createProjectCard(repo) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+
+            const languageIcon = repo.language ? getLanguageIcon(repo.language) : '📁';
+            const description = repo.description || 'No description available';
+            const topics = repo.topics || [];
+
+            // Format update date
+            const updatedDate = new Date(repo.updated_at).toLocaleDateString();
+
+            card.innerHTML = `
+                <div class="project-image">${languageIcon}</div>
+                <div class="project-content">
+                    <h3 class="project-title">${repo.name}</h3>
+                    <p class="project-description">${description}</p>
+                    <div class="repo-stats" style="display: flex; gap: 16px; margin-bottom: 12px; font-size: 14px; color: #9ca3af;">
+                        <span>⭐ ${repo.stargazers_count}</span>
+                        <span>🍴 ${repo.forks_count}</span>
+                        <span>📅 ${updatedDate}</span>
+                        ${repo.language ? `<span>💾 ${repo.language}</span>` : ''}
+                    </div>
+                    <div class="tech-tags">
+                        ${repo.language ? `<span class="tech-tag">${repo.language}</span>` : ''}
+                        ${topics.slice(0, 3).map(topic => `<span class="tech-tag">${topic}</span>`).join('')}
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 16px;">
+                        <a href="${repo.html_url}" target="_blank" class="project-link">
+                            <span>View Code</span>
+                            <i data-feather="github" width="16" height="16"></i>
+                        </a>
+                        ${repo.homepage ? `
+                            <a href="${repo.homepage}" target="_blank" class="project-link">
+                                <span>Live Demo</span>
+                                <i data-feather="external-link" width="16" height="16"></i>
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add click event to nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-fill');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'skills') {
+                    animateSkillBars();
+                } else if (entry.isIntersecting && entry.target.id === 'projects') {
+                    // Load GitHub repos when projects section is visible
+                    fetchGitHubRepos();
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add active state to nav links based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '#d1d5db';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = '#fbbf24';
+                }
+            });
+        });
+
+        // Add CSS for spinning loader
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .repo-stats {
+                font-family: 'Courier New', monospace;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
